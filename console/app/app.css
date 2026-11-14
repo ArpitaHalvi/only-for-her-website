@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── "Only For Her" theme: white pages, wine for text and actions, gold as the accent ───
+   white   #ffffff   page, cards, sidebar
+   tint    #f7f2ec   the one soft fill (muted areas, hover, table stripes)
+   wine    #640f2b   text, primary buttons, active states
+   bronze  #b88636   focus ring
+   gold    #d8b16a   secondary buttons, highlights
+   Fonts: Jost for headings, Manrope for everything else.
+*/
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8b16a;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b88636;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Brand */
+  --sand: #ffffff;
+  --ivory: #ffffff;
+  --wine: #640f2b;
+  --bronze: #b88636;
+  --gold: #d8b16a;
+  --sand-deep: #f7f2ec;
+
+  --brand: #b88636;
+  --brand-dark: #640f2b;
+  --secondary-dark: #8f6a28;
+  --ink: #640f2b;
+  --ink-faint: #7a4a5a;
+
+  /* Surfaces */
+  --background: #ffffff;
+  --foreground: #640f2b;
+  --card: #ffffff;
+  --card-foreground: #640f2b;
+  --popover: #ffffff;
+  --popover-foreground: #640f2b;
+
+  /* Primary actions are wine with ivory text, like the storefront buttons */
+  --primary: #640f2b;
+  --primary-foreground: #fff8ef;
+  --primary-light: #8a2145;
+  --secondary: #d8b16a;
+  --secondary-foreground: #640f2b;
+  --secondary-light: #e6cc97;
+  --white: #ffffff;
+
+  --muted: #f7f2ec;
+  --muted-foreground: #7a4a5a;
+  --accent: #f7f2ec;
+  --accent-foreground: #640f2b;
+  --destructive: #b3261e;
+
+  --border: #e9e0d6;
+  --border-color: #e9e0d6;
+  --input: #ddd2c5;
+  --ring: #b88636;
+
+  /* Sidebar */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #640f2b;
+  --sidebar-primary: #640f2b;
+  --sidebar-primary-foreground: #fff8ef;
+  --sidebar-accent: #f7f2ec;
+  --sidebar-accent-foreground: #640f2b;
+  --sidebar-border: #ece3d9;
+  --sidebar-ring: #b88636;
+
+  /* Status colours used by badges and charts, tuned to sit with the palette */
+  --success: #2f6b3f;
+  --success-soft: #e3efdf;
+  --warning: #8f6a28;
+  --warning-soft: #f6e6c3;
+  --info: #3b5b7a;
+  --info-soft: #dde8f1;
+  --danger-soft: #f6dcd8;
+}
+
+.dark {
+  --background: #1f0a12;
+  --foreground: #f5e7d7;
+  --card: #2b1019;
+  --card-foreground: #f5e7d7;
+  --popover: #2b1019;
+  --popover-foreground: #f5e7d7;
+
+  --primary: #d8b16a;
+  --primary-foreground: #3a0a1a;
+  --primary-light: #e6cc97;
+  --secondary: #4a1a2c;
+  --secondary-foreground: #f5e7d7;
+
+  --muted: #35151f;
+  --muted-foreground: #c9a99a;
+  --accent: #3f1a29;
+  --accent-foreground: #f5e7d7;
+  --destructive: #e5675d;
+
+  --border: #4a2332;
+  --border-color: #4a2332;
+  --input: #55283a;
+  --ring: #d8b16a;
+
+  --sidebar: #260d16;
+  --sidebar-foreground: #f5e7d7;
+  --sidebar-primary: #d8b16a;
+  --sidebar-primary-foreground: #3a0a1a;
+  --sidebar-accent: #3f1a29;
+  --sidebar-accent-foreground: #d8b16a;
+  --sidebar-border: #4a2332;
+
+  --success: #8fcf9d;
+  --success-soft: #1d3324;
+  --warning: #e6cc97;
+  --warning-soft: #3d2f14;
+  --info: #9dbad6;
+  --info-soft: #1b2a39;
+  --danger-soft: #3d1b19;
+}
+
+@theme inline {
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono, ui-monospace, monospace);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-ink: var(--ink);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-light: var(--secondary-light);
+  --color-white: var(--white);
+
+  --color-border: var(--border-color);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-danger-soft: var(--danger-soft);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    @apply transition-colors duration-200;
+  }
+  /* Headings use the serif face like the storefront */
+  h1,
+  h2 {
+    font-family: var(--font-display), serif;
+    letter-spacing: -0.02em;
+  }
+  h1 {
+    font-weight: 500;
+  }
+  :focus-visible {
+    outline-color: var(--bronze);
+  }
+}
+
+/* ─── TIPTAP RICH TEXT EDITOR CONTENT STYLES ─── */
+.prose {
+  max-width: none;
+}
+.ProseMirror p {
+  margin: 0.4rem 0;
+}
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+.ProseMirror blockquote {
+  border-left: 3px solid var(--secondary); /* Swapped to dynamic theme secondary color */
+  padding-left: 0.75rem;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+.ProseMirror pre {
+  background: var(--muted);
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+}
+.ProseMirror img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+}
+
+/* ─── SCROLLBAR UTILITY CLASSES ─── */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}

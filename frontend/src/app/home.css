@@ -1,0 +1,821 @@
+/* Homepage and shared section styles for the redesign. Loaded after globals.css. */
+
+/* ── Section headings: larger, no label above ── */
+.sec-head {
+  max-width: 900px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+}
+.sec-head .h2 {
+  margin-top: 0;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.sec-head .sub {
+  margin-top: 18px;
+  max-width: 52ch;
+  font-size: 19px;
+}
+
+/* ── Hero: cinematic reveal (sequence is in components/Hero.tsx) ── */
+.hero-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #fbf3e4; /* warm ivory first; it settles to white */
+}
+.hero2 {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 40px;
+  align-items: center;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding: clamp(28px, 5vw, 64px) var(--pad) clamp(48px, 6vw, 88px);
+  min-height: min(88svh, 860px);
+}
+.hero2-copy .display {
+  font-size: clamp(2.9rem, 6.3vw, 5.9rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+  text-transform: none;
+}
+/* each word rises out of its own mask */
+.wm {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+  vertical-align: top;
+}
+.word {
+  display: inline-block;
+  will-change: transform;
+}
+.hero-lede {
+  margin-top: 28px;
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.55;
+}
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 28px;
+  margin-top: 36px;
+}
+.hero-cta .btn {
+  min-height: 58px;
+  padding-inline: 34px;
+  font-size: 17px;
+}
+.hero-link {
+  font-family: var(--display);
+  font-size: 19px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+  text-decoration-color: var(--gold);
+  transition: text-decoration-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.hero-link:hover {
+  color: var(--bronze);
+  text-decoration-color: var(--bronze);
+}
+
+/* the soft golden light that sweeps across once */
+.hero-sweep {
+  position: absolute;
+  z-index: 1;
+  top: -10%;
+  bottom: -10%;
+  left: 0;
+  width: 42%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, rgba(240, 205, 130, 0) 0%, rgba(240, 205, 130, 0.35) 38%, rgba(255, 233, 176, 0.75) 50%, rgba(240, 205, 130, 0.35) 62%, rgba(240, 205, 130, 0) 100%);
+  filter: blur(18px);
+}
+
+/* golden particles */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+.pt {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f6dc95 0%, rgba(216, 177, 106, 0.85) 55%, rgba(216, 177, 106, 0) 100%);
+}
+.pt.glow {
+  filter: blur(1.5px);
+  box-shadow: 0 0 14px 4px rgba(240, 205, 130, 0.45);
+}
+
+/* the jewellery: fades in with a slight scale-up (CSS transitions, started by the "is-in" class) */
+.hero2-stage {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 1 / 1.12;
+  justify-self: center;
+}
+.par {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-arch {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 80%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 999px 999px 0 0;
+  opacity: 0;
+  transform: scale(1.07);
+  transform-origin: 50% 70%;
+  transition: opacity 2.4s cubic-bezier(0.22, 0.61, 0.36, 1), transform 3.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-arch .fill {
+  position: absolute;
+  inset: 0;
+}
+.hero-float {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(26px) scale(0.96);
+  transition: opacity 1.6s ease 1.1s, transform 2s cubic-bezier(0.16, 1, 0.3, 1) 1.1s;
+}
+.hero-medal {
+  transition-delay: 1.4s;
+}
+.hero-float-in {
+  width: 100%;
+  height: 100%;
+}
+.hero-jhumka {
+  left: 0;
+  top: 10%;
+  width: 34%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 6px solid #fff;
+  border-radius: 20px;
+}
+.hero-medal {
+  left: 6%;
+  bottom: 4%;
+  width: 36%;
+  aspect-ratio: 1;
+}
+.hero-seal {
+  position: absolute;
+  right: -2%;
+  bottom: 6%;
+  width: clamp(96px, 22%, 132px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 1.4s ease 1.8s, transform 1.6s cubic-bezier(0.34, 1.4, 0.64, 1) 1.8s;
+}
+.hero-wrap.is-in .hero-arch,
+.hero-wrap.is-in .hero-float,
+.hero-wrap.is-in .hero-seal {
+  opacity: 1;
+  transform: none;
+}
+.hero-seal svg {
+  width: 100%;
+  height: 100%;
+}
+.hero-seal text {
+  font: 600 15.5px var(--text);
+  letter-spacing: 0.08em;
+  fill: var(--wine);
+}
+.hero-seal-core {
+  fill: var(--wine);
+}
+.hero-seal-star {
+  fill: var(--gold);
+}
+@media (min-width: 960px) {
+  .hero2 {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 48px;
+  }
+  .hero2-stage {
+    justify-self: end;
+  }
+}
+@media (max-width: 959px) {
+  .hero2 {
+    padding-top: 44px;
+    min-height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-arch,
+  .hero-float,
+  .hero-seal {
+    transition: none;
+  }
+  .hero-sweep,
+  .hero-particles {
+    display: none;
+  }
+}
+
+/* ── Promise strip ── */
+.strip {
+  overflow: hidden;
+  padding: 20px 0;
+  background: var(--wine);
+  color: var(--ivory);
+}
+.strip-track {
+  display: flex;
+  width: max-content;
+}
+.strip-track li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 48px;
+  white-space: nowrap;
+  font: 500 clamp(1.05rem, 1.7vw, 1.35rem) var(--display);
+  letter-spacing: -0.01em;
+}
+.strip-track svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+}
+
+/* ── Categories ── */
+.cat-grid.arches .cat-media {
+  aspect-ratio: 4 / 5;
+  border-radius: 22px;
+}
+.cat-grid.arches .cat-media > svg {
+  transition: transform 0.9s var(--ease);
+}
+.cat-grid.arches .cat:hover .cat-media > svg {
+  transform: scale(1.08);
+}
+.cat-grid.arches .cat-name {
+  margin-top: 16px;
+}
+
+/* ── Product cards ── */
+.card-media {
+  border-radius: 22px;
+  background: var(--sand-deep);
+}
+.card h3 {
+  font-size: 19px;
+}
+
+/* ── Divine ── */
+.divine {
+  padding-block: clamp(72px, 10vw, 140px);
+  background: var(--wine);
+}
+.divine-grid {
+  display: grid;
+  gap: 56px;
+}
+.divine-copy .h2 {
+  color: var(--ivory);
+  font-size: clamp(2.25rem, 4.6vw, 4.25rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.divine-copy p {
+  margin: 24px 0 36px;
+  max-width: 44ch;
+  font-size: 19px;
+  color: var(--sand);
+}
+.deity-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px 20px;
+}
+.deity-medal {
+  width: min(100%, 200px);
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.deity:hover .deity-medal {
+  transform: translateY(-8px) rotate(-4deg);
+  background: none;
+}
+.deity-name {
+  font-size: 22px;
+}
+@media (min-width: 560px) {
+  .deity-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1000px) {
+  .divine-grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: 72px;
+  }
+  .deity-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Occasions ── */
+.occ-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+.occ {
+  position: relative;
+  display: grid;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--sand-deep);
+  text-decoration: none;
+  transition: background-color 0.35s var(--ease);
+}
+.occ-art {
+  display: block;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+}
+.occ-art svg {
+  transition: transform 1s var(--ease);
+}
+.occ:hover .occ-art svg {
+  transform: scale(1.07);
+}
+.occ-text {
+  display: grid;
+  gap: 4px;
+  padding: 22px 76px 26px 24px;
+}
+.occ-text strong {
+  font: 500 clamp(1.5rem, 2.2vw, 1.9rem) var(--display);
+  letter-spacing: -0.02em;
+}
+.occ-text span {
+  font-size: 15px;
+  opacity: 0.82;
+}
+.occ-go {
+  position: absolute;
+  right: 20px;
+  bottom: 22px;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: var(--ivory);
+  transition: transform 0.35s var(--ease), background-color 0.35s var(--ease);
+}
+.occ-go svg {
+  width: 20px;
+  height: 20px;
+}
+.occ:hover .occ-go {
+  transform: translateX(4px) rotate(-45deg);
+  background: var(--bronze);
+}
+@media (min-width: 720px) {
+  .occ-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1100px) {
+  .occ-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ── Story ── */
+.story-frame {
+  border-radius: 999px 999px 24px 24px;
+}
+.story-frame.small {
+  border-radius: 24px;
+}
+.story-copy .h2 {
+  margin: 0 0 22px;
+  font-size: clamp(2.1rem, 4vw, 3.6rem);
+  letter-spacing: -0.04em;
+}
+.story-copy > p {
+  font-size: 19px;
+}
+.story-copy .btn {
+  margin-top: 8px;
+}
+
+/* ── Page entrance helpers: nothing is hidden when script is off ── */
+.btn[data-magnetic] {
+  will-change: transform;
+}
+
+/* ── Trust: large type, no icon cards ── */
+.trust2 {
+  display: grid;
+  gap: 40px 72px;
+}
+.trust2 > .h2 {
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.trust-list {
+  display: grid;
+  gap: 36px 48px;
+  grid-template-columns: 1fr;
+}
+.trust-list h3 {
+  font: 500 clamp(1.4rem, 2.2vw, 1.85rem) var(--display);
+  letter-spacing: -0.02em;
+}
+.trust-list p {
+  margin-top: 8px;
+  max-width: 36ch;
+  font-size: 17px;
+}
+@media (min-width: 640px) {
+  .trust-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1000px) {
+  .trust2 {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+  }
+  .trust2 > .h2 {
+    position: sticky;
+    top: calc(var(--header-h) + 32px);
+  }
+}
+
+/* discount text: darker bronze to pass contrast on sand */
+.price em {
+  color: #7a5818;
+}
+
+/* ── Product page: sticky purchase bar on phones ── */
+.buybar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px var(--pad) calc(12px + env(safe-area-inset-bottom));
+  background: var(--ivory);
+  box-shadow: 0 -10px 30px rgba(100, 15, 43, 0.12);
+  transform: translateY(110%);
+  transition: transform 0.45s var(--ease);
+}
+.buybar.on {
+  transform: none;
+}
+.buybar-info {
+  display: grid;
+  min-width: 0;
+}
+.buybar-info span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  opacity: 0.8;
+}
+.buybar-info strong {
+  font: 600 20px var(--display);
+}
+.buybar .btn {
+  min-height: 50px;
+  padding-inline: 26px;
+}
+@media (min-width: 960px) {
+  .buybar {
+    display: none;
+  }
+}
+
+
+/* Footer: separate by space, not by rules */
+.newsletter {
+  border-bottom: 0;
+}
+.footer-base {
+  border-top: 0;
+  padding-top: 40px;
+}
+
+
+/* ── Typography: Jost for headings, Manrope for text ── */
+h1,
+h2,
+h3,
+.display,
+.h2 {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.display,
+.hero2-copy .display {
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+.sec-head .h2,
+.divine-copy .h2,
+.trust2 > .h2,
+.story-copy .h2 {
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  font-weight: 500;
+}
+.card h3,
+.cat-name,
+.deity-name,
+.occ-text strong,
+.trust-list h3 {
+  font-weight: 500;
+  letter-spacing: 0;
+}
+body {
+  font-size: 16.5px;
+  letter-spacing: 0.005em;
+}
+.btn {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.strip-track li {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.footer-contact {
+  margin-top: 18px;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.footer-contact p {
+  margin: 0;
+}
+.footer-contact a {
+  text-decoration: none;
+}
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
+/* ── Status colours ── */
+.pill-status {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  background: var(--info-bg);
+  color: var(--info);
+}
+/* order statuses */
+.pill-status.st-delivered,
+.pill-status.st-paid,
+.pill-status.paid,
+.pill-status.st-success {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.pill-status.st-pending,
+.pill-status.pending,
+.pill-status.st-unpaid,
+.pill-status.st-returned,
+.pill-status.st-return_requested,
+.pill-status.st-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+.pill-status.st-confirmed,
+.pill-status.st-processing,
+.pill-status.st-shipped,
+.pill-status.st-out_for_delivery,
+.pill-status.st-in_transit,
+.pill-status.st-refunded,
+.pill-status.st-partially_refunded,
+.pill-status.st-info {
+  background: var(--info-bg);
+  color: var(--info);
+}
+.pill-status.st-cancelled,
+.pill-status.st-failed,
+.pill-status.failed,
+.pill-status.st-delivery_failed,
+.pill-status.st-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+/* messages */
+.auth-alert,
+.cart-alert {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-radius: 10px;
+}
+.f-err,
+.coupon-msg,
+.del-res.bad {
+  color: var(--danger);
+}
+.coupon-msg.ok {
+  color: var(--success);
+}
+.pdp-stock {
+  color: var(--success);
+}
+.pdp-stock.low {
+  color: var(--warning);
+}
+.pdp-stock.out {
+  color: var(--danger);
+}
+.del-res:not(.bad) b {
+  color: var(--success);
+}
+.os-icon {
+  background: var(--success);
+}
+.os-head.fail .os-icon {
+  background: var(--danger);
+}
+.badge-out {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 0;
+}
+.verified {
+  color: var(--success);
+}
+.rv-thanks {
+  color: var(--success);
+}
+/* tracking: finished steps green, the current step blue */
+.steps li.done::before {
+  background: var(--success);
+}
+.steps li.done .dot {
+  border-color: var(--success);
+  background: var(--success);
+}
+.steps li.now .dot {
+  border-color: var(--info);
+  background: var(--info);
+  box-shadow: 0 0 0 5px var(--info-bg);
+}
+
+/* ── Offer banners (set in the console under Offers) ── */
+.offers {
+  display: grid;
+  gap: 20px;
+  padding-top: clamp(32px, 5vw, 64px);
+}
+.offer {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 22px;
+  text-decoration: none;
+  background: var(--sand-deep);
+}
+.offer picture,
+.offer img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.offer img {
+  transition: transform 0.9s var(--ease);
+}
+.offer:hover img {
+  transform: scale(1.03);
+}
+.offer-copy {
+  position: absolute;
+  left: clamp(20px, 4vw, 56px);
+  bottom: clamp(20px, 4vw, 48px);
+  display: grid;
+  gap: 8px;
+  max-width: 46ch;
+  color: #fff;
+}
+.offer-copy strong {
+  font: 500 clamp(1.5rem, 3.4vw, 2.8rem) / 1.05 var(--display);
+}
+.offer-copy .btn {
+  justify-self: start;
+  min-height: 46px;
+  font-style: normal;
+}
+.offer-slider {
+  position: relative;
+}
+.offer-slide {
+  display: none;
+}
+.offer-slide.on {
+  display: block;
+}
+.offer-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+.offer-dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+.offer-dots button.on {
+  background: #fff;
+  width: 24px;
+  border-radius: 999px;
+}
+.offer-grid {
+  display: grid;
+  gap: 20px;
+}
+@media (min-width: 760px) {
+  .offer-grid.n2,
+  .offer-grid.n3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1100px) {
+  .offer-grid.n3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+.offer img {
+  max-height: min(68vh, 560px);
+  object-fit: cover;
+  object-position: center;
+}
+.pay-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 13px;
+}
+.pay-line .pill-status {
+  font-size: 12px;
+  padding: 2px 10px;
+}
+
+/* photographs fill their frames like the drawings do */
+img.card-art,
+img.fill,
+img.rev-img-pic {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
